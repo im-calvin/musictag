@@ -6,12 +6,13 @@ from io import BytesIO
 import requests
 
 
-def cropImage(imageURL):
+def cropImage(imageURL, fileDirectory):
     response = requests.get(imageURL)
     im = Image.open(BytesIO(response.content))
     cropped = im.crop((280, 0, 1000, 720))
     # return image object to store into mp3 file
-    res = {"attachments": [cropped]}
+    cropped.save(fileDirectory)
+    res = {"attachments": [fileDirectory]}
     return res
 
 
@@ -39,7 +40,7 @@ def getImage(url):
     ID = url_data.query[2:]
     imageURL = f"https://img.youtube.com/vi/{ID}/maxresdefault.jpg"
 
-    cropImage(imageURL)
+    cropImage(imageURL, f"{ID}.jpg")
 
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])

@@ -1,4 +1,5 @@
 const ffmetadata = require("ffmetadata");
+const { getVideoData } = require("./holo");
 
 // requires ffmpeg to be in PATH
 

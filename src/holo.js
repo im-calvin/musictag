@@ -18,40 +18,33 @@ const holodexClient = new HolodexApiClient({
  */
 async function getVideoData(videoID) {
   const res = new Map([
-    ["title", []],
-    ["artist", []],
-    ["album", []],
+    ["title", ""],
+    ["artist", ""],
+    ["album", ""],
   ]);
   const { songs, channel } = await holodexClient.getVideo(videoID);
   // should only be 1 song
-  for (const song of songs) {
-    // console.log(song.artist); // syudou
-    // console.log(song.name); // キュートなカノジョ / Cute Na Kanojo
-    // console.log(channel.name); // Ceres Fauna Ch. hololive-EN
-    // console.log(channel.englishName); // Ceres Fauna
-    // console.log(title); // キュートなカノジョ - Ceres Fauna 【COVER】
+  let song = songs[0];
+  // console.log(song.artist); // syudou
+  // console.log(song.name); // キュートなカノジョ / Cute Na Kanojo
+  // console.log(channel.name); // Ceres Fauna Ch. hololive-EN
+  // console.log(channel.englishName); // Ceres Fauna
+  // console.log(title); // キュートなカノジョ - Ceres Fauna 【COVER】
 
-    const titleList = res.get("title");
-    titleList.push(song.name.replace("/", "|"));
-    res.set("title", titleList);
+  res.set("title", song.name.replace("/", "|"));
 
-    var parsedName = engToJap.get(channel.englishName);
-    if (parsedName === undefined) parsedName = channel.englishName;
-    const artistList = res.get("artist");
-    artistList.push(parsedName);
-    res.set("artist", artistList);
+  var parsedName = engToJap.get(channel.englishName);
+  if (parsedName === undefined) parsedName = channel.englishName;
+  res.set("artist", parsedName);
 
-    const albumList = res.get("album");
-    if (song.name.indexOf("/") === -1) {
-      albumList.push(song.name);
-      res.set("album", albumList);
-    } else {
-      var albumName = song.name.substring(0, song.name.indexOf("/")).trim();
-      albumName = albumName.concat(` | ${song.artist}`);
-      albumList.push(albumName);
-      res.set("album", albumList);
-    }
+  if (song.name.indexOf("/") === -1) {
+    res.set("album", song.name);
+  } else {
+    var albumName = song.name.substring(0, song.name.indexOf("/")).trim();
+    albumName = albumName.concat(` | ${song.artist}`);
+    res.set("album", albumName);
   }
+
   return res;
 }
 
