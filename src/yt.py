@@ -2,13 +2,17 @@ from __future__ import unicode_literals
 from PIL import Image
 import youtube_dl
 from urllib.parse import urlparse
+from io import BytesIO
+import requests
 
 
 def cropImage(imageURL):
-    im = Image.open(imageURL)
+    response = requests.get(imageURL)
+    im = Image.open(BytesIO(response.content))
     cropped = im.crop((280, 0, 1000, 720))
-    # del original image, save new image into metadata of mp3
-    cropped.show()
+    # return image object to store into mp3 file
+    res = {"attachments": [cropped]}
+    return res
 
 
 ydl_opts = {
@@ -34,6 +38,8 @@ def getImage(url):
     url_data = urlparse(url)
     ID = url_data.query[2:]
     imageURL = f"https://img.youtube.com/vi/{ID}/maxresdefault.jpg"
+
+    cropImage(imageURL)
 
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])

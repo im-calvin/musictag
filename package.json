@@ -19,6 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
+    "ffmetadata": "^1.7.0",
     "holodex.js": "^2.0.5"
   },
   "devDependencies": {
