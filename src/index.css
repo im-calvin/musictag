@@ -1,7 +1,45 @@
+:root {
+  --textAreaSize: 100%;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif;
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  max-width: var(--textAreaSize);
+  /* min-width:  */
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-left {
+  align-content: flex-start;
+} 
+
+.flex-right {
+  align-content: flex-end;
+}
+
+input[type='file'] {
+  color: transparent;
+}
+
+input.flex-right {
+  background-color: red;
+  width: 87px;
+  margin-right: 0px;
+}
+
+.inputText {
+  resize: none;
+  width: var(--textAreaSize);
 }
