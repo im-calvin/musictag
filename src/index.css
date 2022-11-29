@@ -14,7 +14,6 @@ body {
   display: flex;
   flex-direction: row;
   max-width: var(--textAreaSize);
-  /* min-width:  */
 }
 
 .flex-grow {
