@@ -4,6 +4,7 @@ import youtube_dl
 from urllib.parse import urlparse
 from io import BytesIO
 import requests
+import sys
 
 
 def cropImage(imageURL, fileDirectory):
@@ -35,7 +36,7 @@ ydl_opts = {
 # url = yt link
 # returns mp3 object without metadata
 # also should return image url
-def getImage(url):
+def getImage(url, fileDirectory):
     url_data = urlparse(url)
     ID = url_data.query[2:]
     imageURL = f"https://img.youtube.com/vi/{ID}/maxresdefault.jpg"
@@ -46,7 +47,7 @@ def getImage(url):
         ydl.download([url])
 
 
-getImage("https://www.youtube.com/watch?v=fREEntfI27c")
+getImage("https://www.youtube.com/watch?v=fREEntfI27c", "../")
 
 # youtube-dl.exe --newline -o "C:\Users\kelvi\OneDrive\Documents\Adobe\%(title)s.%(ext)s" -x --audio-format mp3
 # --audio-quality 0 --hls-prefer-native --embed-thumbnail --add-metadata --cookies cookies.txt

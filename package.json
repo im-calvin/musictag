@@ -20,7 +20,11 @@
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
     "ffmetadata": "^1.7.0",
-    "holodex.js": "^2.0.5"
+    "fluent-ffmpeg": "^2.1.2",
+    "holodex.js": "^2.0.5",
+    "sharp": "^0.31.2",
+    "url-parse": "^1.5.10",
+    "ytdl-core": "^4.11.2"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.3",

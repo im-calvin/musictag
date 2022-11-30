@@ -1,5 +1,7 @@
 const { app, BrowserWindow, dialog } = require("electron");
 const path = require("path");
+const spawn = require("child_process").spawn;
+const pythonProcess = spawn("python", ["./yt.py"]);
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
