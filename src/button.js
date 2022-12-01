@@ -1,4 +1,4 @@
-const { dialog } = require("electron");
+import { dialog } from "electron";
 
 export default function getDirectory() {
   console.log(dialog.showOpenDialog({ properties: ["openFile", "multiSelections"] }));

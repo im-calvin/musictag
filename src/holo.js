@@ -1,6 +1,6 @@
-const { HolodexApiClient } = require("holodex.js");
-
-require("dotenv").config();
+import { HolodexApiClient } from "holodex.js";
+import { config } from "dotenv";
+config();
 
 const holodexClient = new HolodexApiClient({
   apiKey: process.env.HOLODEX_API_KEY,
@@ -9,14 +9,14 @@ const holodexClient = new HolodexApiClient({
 /**
  *
  * @param {string} videoID id of video to get song metadata from
- * @returns map where val is a list where order is the order of songs that come in
+ * @returns { map } where val is a list where order is the order of songs that come in
  * {
  *  "title": ["キュートなカノジョ | Cute Na Kanojo"],
  *  "artist": ["Ceres Fauna"],
  *  "album": ["キュートなカノジョ | syudou"]
  * }
  */
-async function getVideoData(videoID) {
+export default async function getVideoData(videoID) {
   const res = new Map([
     ["title", ""],
     ["artist", ""],
@@ -47,10 +47,6 @@ async function getVideoData(videoID) {
 
   return res;
 }
-
-getVideoData("s2wIscd82QE");
-
-module.exports = getVideoData;
 
 const engToJap = new Map([
   ["Tokino Sora", "ときのそら"],

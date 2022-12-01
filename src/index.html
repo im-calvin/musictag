@@ -8,13 +8,22 @@
   <body>
     <h1>💖 Enter URLs below !</h1>
     <form>
-      <textarea placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="inputText" rows="12" cols="50"></textarea>
+      <textarea
+        placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        class="inputText"
+        rows="12"
+        cols="50"
+      ></textarea>
       <div class="flex-row">
-        <input type="button" value="Submit" class="flex-left">
+        <input type="button" value="Submit" class="flex-left" />
         <div class="flex-grow"></div>
-        <input type="file" webkitdirectory class="flex-right" onclick="getDirectory()"/>
-        </div>
+        <input
+          type="file"
+          webkitdirectory
+          class="flex-right"
+          onclick="window.showDirectoryPicker()"
+        />
+      </div>
     </form>
-
   </body>
 </html>
