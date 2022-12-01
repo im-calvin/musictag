@@ -71,7 +71,7 @@ async function getMP3(url, fileDirectory) {
 async function cropImage(imageURL) {
   const response = await fetch(imageURL);
 
-  sharp(Buffer.from(await response.arrayBuffer()))
+  await sharp(Buffer.from(await response.arrayBuffer()))
     .resize(720, 720)
     .toFile(pngPath);
 }
