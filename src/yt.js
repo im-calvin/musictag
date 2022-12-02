@@ -1,15 +1,15 @@
 // Buildin with nodejs
-import { rm } from "node:fs/promises";
-import { join, resolve } from "node:path";
+const { rm } = require("node:fs/promises");
+const { join, resolve } = require("node:path");
 // External modules
-import ffmpeg from "fluent-ffmpeg";
-import ffmetadata from "ffmetadata";
-import ytdl from "ytdl-core";
-import Url from "url-parse";
+const ffmpeg = require("fluent-ffmpeg");
+const ffmetadata = require("ffmetadata");
+const ytdl = require("ytdl-core");
+const Url = require("url-parse");
 // for image processing
-import sharp from "sharp";
+const sharp = require("sharp");
 // get holo_metadata
-import getVideoData from "./holo.js";
+const getVideoData = require("./holo.js");
 
 const pngPath = "img.png";
 

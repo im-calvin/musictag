@@ -1,10 +1,8 @@
-import { app, BrowserWindow, dialog } from "electron";
-import path from "path";
-import { spawn } from "child_process";
-const pythonProcess = spawn("python", ["./yt.py"]);
+const { app, BrowserWindow, dialog } = require("electron");
+const { join, resolve } = require("path");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (await import("electron-squirrel-startup")) {
+if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
@@ -14,12 +12,12 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(resolve(), "preload.js"),
+      preload: join(resolve(), "src", "preload.js"),
     },
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile(path.join(resolve(), "index.html"));
+  mainWindow.loadFile(join(resolve(), "src", "index.html"));
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();

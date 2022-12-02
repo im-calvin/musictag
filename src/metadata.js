@@ -1,5 +1,5 @@
-import ffmetadata from "ffmetadata";
-import { getVideoData } from "./holo";
+const ffmetadata = require("ffmetadata");
+const { getVideoData } = require("/holo");
 
 // requires ffmpeg to be in PATH
 

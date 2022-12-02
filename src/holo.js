@@ -1,5 +1,5 @@
-import { HolodexApiClient } from "holodex.js";
-import { config } from "dotenv";
+const { HolodexApiClient } = require("holodex.js");
+const { config } = require("dotenv");
 config();
 
 const holodexClient = new HolodexApiClient({
@@ -16,7 +16,7 @@ const holodexClient = new HolodexApiClient({
  *  "album": ["キュートなカノジョ | syudou"]
  * }
  */
-export default async function getVideoData(videoID) {
+async function getVideoData(videoID) {
   const res = new Map([
     ["title", ""],
     ["artist", ""],
@@ -85,3 +85,5 @@ const engToJap = new Map([
   ["Kazama Iroha", "風真いろは"],
   ["Kiryu Coco", "桐生ココ"],
 ]);
+
+module.exports = getVideoData;
