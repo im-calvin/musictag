@@ -30,7 +30,6 @@ async function getVideoData(videoID) {
   // console.log(channel.name); // Ceres Fauna Ch. hololive-EN
   // console.log(channel.englishName); // Ceres Fauna
   // console.log(title); // キュートなカノジョ - Ceres Fauna 【COVER】
-
   res.set("title", song.name.replace("/", "|"));
 
   var parsedName = engToJap.get(channel.englishName);

@@ -1,4 +1,5 @@
 // Buildin with nodejs
+const fetch = require("node-fetch");
 const { rm } = require("node:fs/promises");
 const { join, resolve } = require("node:path");
 // External modules
@@ -15,16 +16,15 @@ const pngPath = "img.png";
 
 /**
  * must have ffmpeg in path: %FFMPEG: xx
- * @param {,} url
- * @param {*} fileDirectory
+ * @param {string} url
+ * @param {string} fileDirectory
  */
-async function getMP3(url, fileDirectory) {
+async function getMP3(event, url, fileDirectory = resolve()) {
   const url_data = new Url(url);
   const id = url_data.query.substring(3);
   const imageURL = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
   // creates a cropped image called src.png
   cropImage(imageURL);
-
   const metaMap = await getVideoData(id);
 
   const stream = ytdl(id, {
@@ -39,7 +39,7 @@ async function getMP3(url, fileDirectory) {
   await new Promise((resolve, reject) => {
     new ffmpeg({ source: stream })
       .format("mp3")
-      .on("start", () => console.log("started"))
+      // .on("start", () => console.log("started"))
       .on("end", () => resolve())
       .on("error", (err) => reject(err))
       .save(fileName);
@@ -76,4 +76,6 @@ async function cropImage(imageURL) {
     .toFile(pngPath);
 }
 
-getMP3("https://www.youtube.com/watch?v=sSIzlmDcywQ", resolve());
+// getMP3("https://www.youtube.com/watch?v=sSIzlmDcywQ", resolve());
+
+module.exports = getMP3;

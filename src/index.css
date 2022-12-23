@@ -42,3 +42,13 @@ input.flex-right {
   resize: none;
   width: var(--textAreaSize);
 }
+
+.box {
+  border: 1px solid black;
+  /* width: 70%; */
+  margin-left: 2%;
+  margin-right: 2%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
