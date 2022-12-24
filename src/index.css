@@ -51,4 +51,10 @@ input.flex-right {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.small-text {
+  font-size: small;
 }

@@ -17,4 +17,5 @@ submitButton.addEventListener("click", async () => {
   for (let link of links) {
     await window.electronAPI.getMP3(link, filePath);
   }
+  window.alert("Your downloads are done!");
 });
