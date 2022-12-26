@@ -3,7 +3,13 @@ const dirDropdown = document.getElementsByClassName("dirDropdown");
 const inputText = document.getElementsByClassName("inputText");
 const submitButton = document.getElementById("submitButton");
 
-// TODO: initialize the dropdown with the proper data
+// initialize the dropdown with the proper data
+const directories = window.electronAPI.preloadDirectories();
+for (directory of directories) {
+  const option = document.createElement("option");
+  option.text = directory;
+  dirDropdown[0].appendChild(option);
+}
 
 // choose directory
 dirButton.addEventListener("click", async () => {
