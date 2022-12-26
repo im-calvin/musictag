@@ -27,7 +27,8 @@
     "node-fetch": "^2.6.7",
     "sharp": "^0.31.2",
     "url-parse": "^1.5.10",
-    "ytdl-core": "^4.11.2"
+    "ytdl-core": "^4.11.2",
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.3",
