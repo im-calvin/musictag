@@ -23,6 +23,10 @@ async function getVideoData(videoID) {
     ["album", ""],
   ]);
   const { songs, channel } = await holodexClient.getVideo(videoID);
+  // song not in holodex
+  if (songs.length === 0) {
+    throw "Song not found in Holodex";
+  }
   // should only be 1 song
   let song = songs[0];
   // console.log(song.artist); // syudou
@@ -30,7 +34,7 @@ async function getVideoData(videoID) {
   // console.log(channel.name); // Ceres Fauna Ch. hololive-EN
   // console.log(channel.englishName); // Ceres Fauna
   // console.log(title); // キュートなカノジョ - Ceres Fauna 【COVER】
-  res.set("title", song.name.replace("/", "|"));
+  res.set("title", song.name.replace("/", " |"));
 
   var parsedName = engToJap.get(channel.englishName);
   if (parsedName === undefined) parsedName = channel.englishName;
@@ -43,6 +47,7 @@ async function getVideoData(videoID) {
     albumName = albumName.concat(` | ${song.artist}`);
     res.set("album", albumName);
   }
+  console.log(res);
   return res;
 }
 

@@ -24,12 +24,18 @@ dirButton.addEventListener("click", async () => {
   dirDropdown[0].selectedIndex = option;
 });
 
+// get download
 submitButton.addEventListener("click", async () => {
   const text = inputText[0].value;
   const links = text.split("\n");
   for (let link of links) {
     const dir = dirDropdown[0].value;
-    await window.electronAPI.getMP3(link, dir);
+    try {
+      await window.electronAPI.getMP3(link, dir);
+    } catch (e) {
+      window.alert("Invalid link / directory!");
+      return;
+    }
   }
   window.alert("Your downloads are done!");
 });
