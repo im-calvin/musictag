@@ -65,6 +65,24 @@ body {
 .table {
   width: 100%;
   text-align: left;
+  table-layout: fixed;
+}
+
+.title {
+  width: 40%;
+}
+
+.artist {
+  width: 20%;
+}
+
+.album {
+  width: 40%;
+}
+
+.padding-horizontal {
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 .border {

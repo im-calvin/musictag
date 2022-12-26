@@ -34,8 +34,8 @@ submitButton.addEventListener("click", async () => {
   console.log(numDownloads);
   for (let i = 0; i < numDownloads; i++) {
     downloadsTable.removeChild(downloadsTable.lastChild);
-    numDownloads = 0;
   }
+  numDownloads = 0;
 
   for (let link of links) {
     const dir = dirDropdown[0].value;
@@ -51,12 +51,12 @@ submitButton.addEventListener("click", async () => {
     const title = document.createElement("td");
     const artist = document.createElement("td");
     const album = document.createElement("td");
-    title.textContent = metaMap.get("title");
+    title.textContent = metaMap.get("title").replaceAll("|", "/");
     artist.textContent = metaMap.get("artist");
-    album.textContent = metaMap.get("album");
-    title.className = "border small-text";
-    artist.className = "border small-text";
-    album.className = "border small-text";
+    album.textContent = metaMap.get("album").replaceAll("|", "/");
+    title.className = "padding-horizontal border small-text";
+    artist.className = "padding-horizontal border small-text";
+    album.className = "padding-horizontal border small-text";
     row.appendChild(title);
     row.appendChild(artist);
     row.appendChild(album);
