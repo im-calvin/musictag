@@ -10,7 +10,7 @@
     <form>
       <textarea
         placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        class="inputText flex-grow"
+        class="inputText"
         rows="12"
         cols="50"
       ></textarea>
@@ -22,11 +22,20 @@
           id="submitButton"
         />
         <select class="dirDropdown small-text flex-grow overflow flex-shrink"></select>
-        <button type="button" id="directoryButton" class="button-width flex-right">
+        <button type="button" id="directoryButton" class="flex-right">
           Path
         </button>
       </div>
-      <h1>(≧▽≦) Downloads</h1>
+      <div>
+        <h1>(≧▽≦) Downloads</h1>
+        <table id="downloadsTable" class="table border">
+          <tr>
+            <th class="border">Title</th>
+            <th class="border">Artist</th>
+            <th class="border">Album</th>
+          </tr>
+        </table>
+      </div>
     </form>
     <script src="./renderer.js"></script>
   </body>

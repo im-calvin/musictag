@@ -18,6 +18,13 @@ const pngPath = "img.png";
  * must have ffmpeg in path: %FFMPEG: xx
  * @param {string} url
  * @param {string} fileDirectory
+ * @returns { map }
+ * ex:
+ * {
+ *  "title": ["キュートなカノジョ | Cute Na Kanojo"],
+ *  "artist": ["Ceres Fauna"],
+ *  "album": ["キュートなカノジョ | syudou"]
+ * }
  */
 async function getMP3(event, url, fileDirectory = resolve()) {
   const url_data = new Url(url);
@@ -61,6 +68,7 @@ async function getMP3(event, url, fileDirectory = resolve()) {
   });
 
   await rm(pngPath);
+  return metaMap;
 }
 
 /**

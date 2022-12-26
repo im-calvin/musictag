@@ -47,7 +47,6 @@ async function getVideoData(videoID) {
     albumName = albumName.concat(` | ${song.artist}`);
     res.set("album", albumName);
   }
-  console.log(res);
   return res;
 }
 
