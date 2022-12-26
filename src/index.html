@@ -10,18 +10,25 @@
     <form>
       <textarea
         placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        class="inputText"
+        class="inputText flex-grow"
         rows="12"
         cols="50"
       ></textarea>
       <div class="flex-row">
-        <input type="button" value="Submit" class="flex-left" id="submitButton" />
-        <span class="small-text box flex-grow">
-          <strong>File path:</strong> <span id="filePath"></span>
-        </span>
-        <button type="button" id="directoryButton">Set Path</button>
+        <input
+          type="button"
+          value="Submit"
+          class="flex-left no-shrink"
+          id="submitButton"
+        />
+        <select class="dirDropdown small-text flex-grow overflow flex-shrink"></select>
+        <button type="button" id="directoryButton" class="button-width flex-right">
+          Path
+        </button>
       </div>
+      <h1>(≧▽≦) Downloads</h1>
     </form>
     <script src="./renderer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
   </body>
 </html>

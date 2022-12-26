@@ -1,6 +1,5 @@
-const { create } = require("domain");
 const { app, BrowserWindow, dialog, ipcMain } = require("electron");
-const { url } = require("inspector");
+const { writeFile, readFile } = require("node:fs/promises");
 const { join, resolve } = require("path");
 const getMP3 = require("./yt");
 
@@ -14,6 +13,8 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    minWidth: 300,
+    minHeight: 500,
     webPreferences: {
       preload: join(resolve(), "src", "preload.js"),
       nodeIntegration: true,
@@ -63,6 +64,20 @@ async function handleDirectory() {
   if (canceled) {
     return;
   } else {
-    return filePaths[0];
+    // get prior directories
+    const directories = JSON.parse(
+      await readFile(join(resolve(), "public", "directories.json"))
+    );
+    // the directory chosen
+    const directory = filePaths[0];
+    // checks if the directories dropdown has the chosen directory
+    if (!directories.includes(directory)) {
+      directories.push(directory);
+      await writeFile(
+        join(resolve(), "public", "directories.json"),
+        JSON.stringify(directories)
+      );
+    }
+    return directory;
   }
 }

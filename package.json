@@ -23,6 +23,7 @@
     "ffmetadata": "^1.7.0",
     "fluent-ffmpeg": "^2.1.2",
     "holodex.js": "^2.0.5",
+    "jquery": "^3.6.3",
     "node-fetch": "^2.6.7",
     "sharp": "^0.31.2",
     "url-parse": "^1.5.10",

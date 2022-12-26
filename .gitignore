@@ -91,4 +91,8 @@ out/
 # Python
 .venv
 
+# local ide
 .vscode
+
+# output directory
+song_out

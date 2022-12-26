@@ -20,41 +20,50 @@ body {
   flex-grow: 1;
 }
 
+.no-shrink {
+  flex-shrink: 0;
+}
+
+.flex-shrink {
+  flex-shrink: 1;
+}
+
 .flex-left {
   align-content: flex-start;
 } 
 
 .flex-right {
   align-content: flex-end;
-}
-
-input[type='file'] {
-  color: transparent;
-}
-
-input.flex-right {
-  background-color: red;
-  width: 87px;
-  margin-right: 0px;
+  text-align: right;
 }
 
 .inputText {
   resize: none;
-  width: var(--textAreaSize);
-}
-
-.box {
-  border: 1px solid black;
-  /* width: 70%; */
-  margin-left: 2%;
-  margin-right: 2%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding-left: 2px;
-  padding-right: 2px;
+  width: 98.5%;
 }
 
 .small-text {
   font-size: small;
+}
+
+.dirDropdown {
+  margin-left: 2%;
+  margin-right: 2%;
+  margin: auto;
+  padding-left: 2px;
+  padding-right: 2px;
+  /* min-width: auto; */
+  /* if I don't set a max width, it doesn't do the ellipsis */
+  max-width: auto;
+  min-width: 0;
+}
+
+/* .button-width {
+  max-width: 10%;
+} */
+
+.overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
