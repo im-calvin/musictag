@@ -26,13 +26,18 @@ const pngPath = "img.png";
  *  "album": ["キュートなカノジョ | syudou"]
  * }
  */
-async function getMP3(event, url, fileDirectory = resolve()) {
+async function getMP3(event, url, fileDirectory) {
+  console.log(fileDirectory);
+  if (fileDirectory.length === 0) {
+    throw "Directory not found";
+  }
   const url_data = new Url(url);
   const id = url_data.query.substring(3);
   const imageURL = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
-  // creates a cropped image called src.png
-  cropImage(imageURL);
+
   const metaMap = await getVideoData(id);
+  // creates a cropped image called img.png
+  cropImage(imageURL);
 
   const stream = ytdl(id, {
     quality: "highestaudio",

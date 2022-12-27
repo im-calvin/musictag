@@ -36,6 +36,7 @@ submitButton.addEventListener("click", async () => {
   }
   numDownloads = 0;
 
+  // iterate over links in text-area
   for (let link of links) {
     const dir = dirDropdown[0].value;
     try {
