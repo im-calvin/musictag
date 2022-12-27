@@ -97,5 +97,5 @@ out/
 # output directory
 song_out
 
-# json storage
-public
+# workflows testing
+.github

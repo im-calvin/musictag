@@ -31,7 +31,6 @@ submitButton.addEventListener("click", async () => {
   const text = inputText[0].value;
   const links = text.split("\n");
   // refresh table
-  console.log(numDownloads);
   for (let i = 0; i < numDownloads; i++) {
     downloadsTable.removeChild(downloadsTable.lastChild);
   }

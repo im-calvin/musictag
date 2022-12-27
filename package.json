@@ -11,6 +11,15 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
+  "build": {
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "im-calvin",
+        "repo": "musictag"
+      }
+    ]
+  },
   "keywords": [],
   "author": {
     "name": "im-calvin",
@@ -18,6 +27,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "electron-fetch": "^1.9.1",
     "electron-squirrel-startup": "^1.0.0",
     "ffmetadata": "^1.7.0",
@@ -27,8 +37,7 @@
     "node-fetch": "^2.6.7",
     "sharp": "^0.31.2",
     "url-parse": "^1.5.10",
-    "ytdl-core": "^4.11.2",
-    "dotenv": "^16.0.3"
+    "ytdl-core": "^4.11.2"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.3",
@@ -37,6 +46,7 @@
     "@electron-forge/maker-squirrel": "^6.0.3",
     "@electron-forge/maker-zip": "^6.0.3",
     "@electron-forge/plugin-webpack": "^6.0.3",
+    "@electron-forge/publisher-github": "^6.0.4",
     "dotenv": "^16.0.3",
     "electron": "21.3.1"
   },

@@ -13,6 +13,6 @@ contextBridge.exposeInMainWorld("electronAPI", {
   },
   // no return type
   preloadDirectories: () => {
-    return JSON.parse(readFileSync(join(resolve(), "public", "directories.json")));
+    return JSON.parse(readFileSync(join(__dirname, "directories.json")));
   },
 });

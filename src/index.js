@@ -16,16 +16,18 @@ const createWindow = () => {
     minWidth: 400,
     minHeight: 500,
     webPreferences: {
-      preload: join(resolve(), "src", "preload.js"),
+      preload: join(__dirname, "preload.js"),
       nodeIntegration: true,
+      enableRemoteModule: true,
     },
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile(join(resolve(), "src", "index.html"));
+  // mainWindow.loadFile(join(resolve(), "src", "index.html"));
+  mainWindow.loadFile(join(__dirname, "index.html"));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -65,18 +67,13 @@ async function handleDirectory() {
     return;
   } else {
     // get prior directories
-    const directories = JSON.parse(
-      await readFile(join(resolve(), "public", "directories.json"))
-    );
+    const directories = JSON.parse(await readFile(join(__dirname, "directories.json")));
     // the directory chosen
     const directory = filePaths[0];
     // checks if the directories dropdown has the chosen directory
     if (!directories.includes(directory)) {
       directories.push(directory);
-      await writeFile(
-        join(resolve(), "public", "directories.json"),
-        JSON.stringify(directories)
-      );
+      await writeFile(join(__dirname, "directories.json"), JSON.stringify(directories));
     }
     return directory;
   }
