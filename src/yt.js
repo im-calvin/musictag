@@ -27,7 +27,6 @@ const pngPath = "img.png";
  * }
  */
 async function getMP3(event, url, fileDirectory) {
-  console.log(fileDirectory);
   if (fileDirectory.length === 0) {
     throw "Directory not found";
   }

@@ -99,3 +99,5 @@ song_out
 
 # workflows testing
 .github
+
+.src/directories.json
