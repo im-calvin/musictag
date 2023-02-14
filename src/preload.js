@@ -3,6 +3,9 @@
 const { contextBridge, ipcRenderer } = require("electron");
 const { readFileSync } = require("node:fs");
 const { join, resolve } = require("path");
+// const Store = require("electron-store");
+
+// const store = new Store();
 
 contextBridge.exposeInMainWorld("electronAPI", {
   openDirectory: async () => {
@@ -13,6 +16,6 @@ contextBridge.exposeInMainWorld("electronAPI", {
   },
   // no return type
   preloadDirectories: () => {
-    return JSON.parse(readFileSync(join(__dirname, "directories.json")));
+    return ipcRenderer.invoke("preloadDirectories", "directories");
   },
 });

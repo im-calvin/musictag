@@ -18,6 +18,9 @@
         "owner": "im-calvin",
         "repo": "musictag"
       }
+    ],
+    "files": [
+      "src/directories.json"
     ]
   },
   "keywords": [],
@@ -30,6 +33,7 @@
     "dotenv": "^16.0.3",
     "electron-fetch": "^1.9.1",
     "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^8.1.0",
     "ffmetadata": "^1.7.0",
     "fluent-ffmpeg": "^2.1.2",
     "holodex.js": "^2.0.5",

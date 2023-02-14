@@ -5,12 +5,13 @@ const submitButton = document.getElementById("submitButton");
 const downloadsTable = document.getElementById("downloadsTable");
 
 // initialize the dropdown with the proper data
-const directories = window.electronAPI.preloadDirectories();
-for (directory of directories) {
-  const option = document.createElement("option");
-  option.text = directory;
-  dirDropdown[0].appendChild(option);
-}
+// const directories = window.electronAPI.preloadDirectories();
+// // console.log(directories);
+// for (directory of directories) {
+//   const option = document.createElement("option");
+//   option.text = directory;
+//   dirDropdown[0].appendChild(option);
+// }
 
 // choose directory
 dirButton.addEventListener("click", async () => {

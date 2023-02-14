@@ -1,7 +1,9 @@
 const { app, BrowserWindow, dialog, ipcMain } = require("electron");
-const { writeFile, readFile } = require("node:fs/promises");
 const { join, resolve } = require("path");
 const getMP3 = require("./yt");
+const Store = require("electron-store");
+
+const store = new Store();
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -36,6 +38,9 @@ const createWindow = () => {
 app.on("ready", () => {
   ipcMain.handle("dialog:openDirectory", handleDirectory);
   ipcMain.handle("yt:getmp3", getMP3);
+  ipcMain.handle("preloadDirectories", (event, key) => {
+    return store.get(key);
+  });
   createWindow();
 });
 
@@ -67,13 +72,16 @@ async function handleDirectory() {
     return;
   } else {
     // get prior directories
-    const directories = JSON.parse(await readFile(join(__dirname, "directories.json")));
+    const directories = store.get("directories");
+    if (directories === undefined) directories = [];
     // the directory chosen
     const directory = filePaths[0];
     // checks if the directories dropdown has the chosen directory
     if (!directories.includes(directory)) {
       directories.push(directory);
-      await writeFile(join(__dirname, "directories.json"), JSON.stringify(directories));
+      // await writeFile(join(__dirname, "directories.json"), JSON.stringify(directories));
+      store.set("directories", JSON.stringify(directories));
+      console.log(store.get("directories"));
     }
     return directory;
   }
