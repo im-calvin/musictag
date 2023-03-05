@@ -3,7 +3,20 @@ const { join, resolve } = require("path");
 const getMP3 = require("./yt");
 const Store = require("electron-store");
 
-const store = new Store();
+// config schema for electron-store
+const schema = {
+  directories: {
+    type: "array"
+  }
+};
+
+const store = new Store({schema});
+
+// check to see if running for the first time
+let cmd = process.argv[1];
+if (cmd == '--squirrel-firstrun') {
+  store.clear();
+}
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -72,7 +85,7 @@ async function handleDirectory() {
     return;
   } else {
     // get prior directories
-    const directories = store.get("directories");
+    let directories = store.get("directories");
     if (directories === undefined) directories = [];
     // the directory chosen
     const directory = filePaths[0];
@@ -80,7 +93,7 @@ async function handleDirectory() {
     if (!directories.includes(directory)) {
       directories.push(directory);
       // await writeFile(join(__dirname, "directories.json"), JSON.stringify(directories));
-      store.set("directories", JSON.stringify(directories));
+      store.set("directories", directories);
       console.log(store.get("directories"));
     }
     return directory;
