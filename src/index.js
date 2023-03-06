@@ -2,19 +2,21 @@ const { app, BrowserWindow, dialog, ipcMain } = require("electron");
 const { join, resolve } = require("path");
 const getMP3 = require("./yt");
 const Store = require("electron-store");
+const isDev = require("electron-is-dev");
 
 // config schema for electron-store
 const schema = {
   directories: {
-    type: "array"
-  }
+    type: "array",
+  },
 };
 
-const store = new Store({schema});
+const store = new Store({ schema });
 
 // check to see if running for the first time
 let cmd = process.argv[1];
-if (cmd == '--squirrel-firstrun') {
+console.log(cmd);
+if (cmd === "--squirrel-firstrun") {
   store.clear();
 }
 
@@ -31,18 +33,18 @@ const createWindow = () => {
     minWidth: 400,
     minHeight: 500,
     webPreferences: {
-      preload: join(__dirname, "preload.js"),
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: true,
       enableRemoteModule: true,
     },
   });
 
   // and load the index.html of the app.
-  // mainWindow.loadFile(join(resolve(), "src", "index.html"));
-  mainWindow.loadFile(join(__dirname, "index.html"));
+  // mainWindow.loadURL(isDev ? MAIN_WINDOW_WEBPACK_ENTRY : join(__dirname, "index.html"));
+  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  // isDev ? mainWindow.webContents.openDevTools() : 0;
 };
 
 // This method will be called when Electron has finished
@@ -92,10 +94,9 @@ async function handleDirectory() {
     // checks if the directories dropdown has the chosen directory
     if (!directories.includes(directory)) {
       directories.push(directory);
-      // await writeFile(join(__dirname, "directories.json"), JSON.stringify(directories));
       store.set("directories", directories);
-      console.log(store.get("directories"));
     }
+
     return directory;
   }
 }

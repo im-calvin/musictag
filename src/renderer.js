@@ -1,3 +1,4 @@
+import "./index.css";
 const dirButton = document.getElementById("directoryButton");
 const dirDropdown = document.getElementsByClassName("dirDropdown");
 const inputText = document.getElementsByClassName("inputText");
@@ -5,14 +6,14 @@ const submitButton = document.getElementById("submitButton");
 const downloadsTable = document.getElementById("downloadsTable");
 
 // initialize the dropdown with the proper data
-window.electronAPI.preloadDirectories().then(function(directories) {
-  for (directory of directories) {
+window.electronAPI.preloadDirectories().then(function (directories) {
+
+  for (const directory of directories) {
     const option = document.createElement("option");
     option.text = directory;
     dirDropdown[0].appendChild(option);
   }
 });
-
 
 // choose directory
 dirButton.addEventListener("click", async () => {
@@ -44,7 +45,7 @@ submitButton.addEventListener("click", async () => {
     // try {
     var metaMap = await window.electronAPI.getMP3(link, dir);
     // } catch (e) {
-      // theoretically this should not download anything but that's not current behaviour
+    // theoretically this should not download anything but that's not current behaviour
     // window.alert("Invalid link / directory!");
     // return;
     // }

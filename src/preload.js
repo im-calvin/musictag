@@ -1,11 +1,6 @@
 // See the Electron documentation for details on how to use preload scripts:
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 const { contextBridge, ipcRenderer } = require("electron");
-const { readFileSync } = require("node:fs");
-const { join, resolve } = require("path");
-// const Store = require("electron-store");
-
-// const store = new Store();
 
 contextBridge.exposeInMainWorld("electronAPI", {
   openDirectory: async () => {
