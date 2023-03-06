@@ -8,7 +8,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env.FLUENTFFMPEG_COV": false,
     }),
-    // new Dotenv(),
+    new Dotenv(),
     // used to copy the sharp module since sharp is external
     new CopyPlugin({
       patterns: [
@@ -102,7 +102,6 @@ module.exports = {
         },
       ],
     }),
-    // new webpack.EnvironmentPlugin({ HOLODEX_API_KEY: process.env.HOLODEX_API_KEY }),
   ],
   externals: {
     sharp: "commonjs sharp",
