@@ -31,6 +31,7 @@ const createWindow = () => {
       nodeIntegration: true,
       enableRemoteModule: true,
     },
+    icon: "./public/Music_Tag_v01.png",
   });
 
   // and load the index.html of the app.

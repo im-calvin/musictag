@@ -31,6 +31,8 @@ module.exports = {
       config: {
         certificateFile: "./cert.pfx",
         certificatePassword: process.env.CERTIFICATE_PASSWORD,
+        iconUrl: "./public/Music_Tag_v01.ico",
+        setupIcon: "./public/Music_Tag_v01.ico",
       },
     },
     {
@@ -38,11 +40,12 @@ module.exports = {
       config: {
         background: "./public/Music_Tag_v01.png",
         format: "ULFO",
+        icon: "./public/Music_Tag_v01.png",
       },
     },
     {
       name: "@electron-forge/maker-zip",
-      platforms: ["darwin", "linux"],
+      platforms: ["darwin"],
     },
     // package for debian-linux
     {
@@ -50,6 +53,7 @@ module.exports = {
       config: {
         options: {
           homepage: "https://github.com/im-calvin/musictag",
+          icon: "./public/Music_Tag_v01.png",
         },
       },
     },
