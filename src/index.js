@@ -13,15 +13,9 @@ const schema = {
 
 const store = new Store({ schema });
 
-// check to see if running for the first time
-let cmd = process.argv[1];
-console.log(cmd);
-if (cmd === "--squirrel-firstrun") {
-  store.clear();
-}
-
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
+  store.clear();
   app.quit();
 }
 
