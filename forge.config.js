@@ -42,14 +42,13 @@ module.exports = {
     },
     {
       name: "@electron-forge/maker-zip",
-      platforms: ["darwin"],
+      platforms: ["darwin", "linux"],
     },
     // package for debian-linux
     {
       name: "@electron-forge/maker-rpm",
       config: {
         options: {
-          maintainer: "Calvin",
           homepage: "https://github.com/im-calvin/musictag",
         },
       },
