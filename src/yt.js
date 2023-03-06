@@ -1,5 +1,5 @@
 // Buildin with nodejs
-const fetch = require("node-fetch");
+const fetch = require("node-fetch").default;
 const { rm } = require("node:fs/promises");
 const { join, resolve } = require("node:path");
 // External modules
