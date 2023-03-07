@@ -66,8 +66,8 @@ submitButton.addEventListener("click", async () => {
     downloadsTable.appendChild(row);
     numDownloads++;
   }
+
   // delete the images folder
   await rimraf(folderName);
   window.alert("Your downloads are done!");
 });
-

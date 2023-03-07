@@ -12,5 +12,5 @@ contextBridge.exposeInMainWorld("electronAPI", {
   // no return type
   preloadDirectories: () => {
     return ipcRenderer.invoke("preloadDirectories", "directories");
-  },
+  }
 });
