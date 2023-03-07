@@ -2,6 +2,7 @@
 const fetch = require("node-fetch").default;
 const { rm } = require("node:fs/promises");
 const { join, resolve } = require("node:path");
+// for interfacing with files
 // External modules
 // ffmpeg installer
 const ffmpeg = require("fluent-ffmpeg");
@@ -23,8 +24,12 @@ const Url = require("url-parse");
 const sharp = require("sharp");
 // get holo_metadata
 const getVideoData = require("./holo.js");
+const { Queue } = require("bullmq");
+const { mkdir } = require("node:fs");
 
-const pngPath = "img.png";
+// the folder where the images are stored (folderName -> songName.png, songName.png, etc)
+const folderName = "musictag_images";
+mkdir(folderName);
 
 /**
  * must have ffmpeg in path: %FFMPEG: xx
@@ -44,11 +49,12 @@ async function getMP3(event, url, fileDirectory) {
   }
   const url_data = new Url(url);
   const id = url_data.query.substring(3);
-  const imageURL = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
-
+  // this might throw an error
   const metaMap = await getVideoData(id);
+
+  const imageURL = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
   // creates a cropped image called img.png
-  cropImage(imageURL);
+  cropImage(imageURL, songName);
 
   const stream = ytdl(id, {
     quality: "highestaudio",
@@ -59,10 +65,24 @@ async function getMP3(event, url, fileDirectory) {
   const songName = metaMap.get("title").replace(/[\\/:*?"<>|]/g, "");
   const fileName = join(fileDirectory, `${songName}.mp3`);
 
+  await queue.add(
+    songName,
+    { stream: stream, fileName: fileName, metaMap: metaMap, songName: songName },
+    { removeOnComplete: true, removeOnFail: true }
+  );
+  return metaMap;
+}
+
+async function downloadSong(stream, fileName, metaMap, songName) {
   await new Promise((resolve, reject) => {
     new ffmpeg({ source: stream })
       .format("mp3")
       // .on("start", () => console.log("started"))
+      .on("progress", (progress) => {
+        console.log("Processing: " + progress.percent + "% done");
+        console.log("CurrentKbps: " + progress.currentKbps + "kbps");
+        console.log("Target Size: " + progress.targetSize + "MB");
+      })
       .on("end", () => resolve())
       .on("error", (err) => reject(err))
       .save(fileName);
@@ -77,14 +97,11 @@ async function getMP3(event, url, fileDirectory) {
         title: metaMap.get("title"),
       },
       {
-        attachments: [pngPath],
+        attachments: [`${songName}.png`],
       },
       resolve
     );
   });
-
-  await rm(pngPath);
-  return metaMap;
 }
 
 /**
@@ -97,7 +114,7 @@ async function cropImage(imageURL) {
 
   await sharp(Buffer.from(await response.arrayBuffer()))
     .resize(720, 720)
-    .toFile(pngPath);
+    .toFile(`/${folderName}/${songName}.png`);
 }
 
 // getMP3("https://www.youtube.com/watch?v=sSIzlmDcywQ", resolve());

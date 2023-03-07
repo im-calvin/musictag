@@ -2,6 +2,7 @@ const { app, BrowserWindow, dialog, ipcMain } = require("electron");
 const getMP3 = require("./yt");
 const Store = require("electron-store");
 const isDev = require("electron-is-dev");
+const { Queue } = require("bullmq");
 require("update-electron-app")();
 
 // config schema for electron-store
@@ -12,6 +13,7 @@ const schema = {
 };
 
 const store = new Store({ schema });
+const queue = new Queue("Songs");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {

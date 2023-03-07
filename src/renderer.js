@@ -7,7 +7,6 @@ const downloadsTable = document.getElementById("downloadsTable");
 
 // initialize the dropdown with the proper data
 window.electronAPI.preloadDirectories().then(function (directories) {
-
   for (const directory of directories) {
     const option = document.createElement("option");
     option.text = directory;
@@ -42,13 +41,13 @@ submitButton.addEventListener("click", async () => {
   // iterate over links in text-area
   for (let link of links) {
     const dir = dirDropdown[0].value;
-    // try {
-    var metaMap = await window.electronAPI.getMP3(link, dir);
-    // } catch (e) {
-    // theoretically this should not download anything but that's not current behaviour
-    // window.alert("Invalid link / directory!");
-    // return;
-    // }
+    try {
+      var metaMap = await window.electronAPI.getMP3(link, dir);
+    } catch (e) {
+      // theoretically this should not download anything but that's not current behaviour
+      const eMsg = e.message.substr(e.message.lastIndexOf(":") + 1).trim();
+      window.alert(`Error: ${eMsg}`);
+    }
     // add values to tables
     const row = document.createElement("tr");
     const title = document.createElement("td");
@@ -67,6 +66,8 @@ submitButton.addEventListener("click", async () => {
     downloadsTable.appendChild(row);
     numDownloads++;
   }
-
+  // delete the images folder
+  await rimraf(folderName);
   window.alert("Your downloads are done!");
 });
+

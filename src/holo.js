@@ -6,8 +6,6 @@ const holodexClient = new HolodexApiClient({
   apiKey: process.env.HOLODEX_API_KEY,
 });
 
-console.log(process.env.HOLODEX_API_KEY)
-
 /**
  *
  * @param {string} videoID id of video to get song metadata from
