@@ -26,6 +26,7 @@ const createWindow = () => {
     height: 600,
     minWidth: 400,
     minHeight: 500,
+    autoHideMenuBar: true,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: true,
@@ -35,7 +36,6 @@ const createWindow = () => {
   });
 
   // and load the index.html of the app.
-  // mainWindow.loadURL(isDev ? MAIN_WINDOW_WEBPACK_ENTRY : join(__dirname, "index.html"));
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   // Open the DevTools.

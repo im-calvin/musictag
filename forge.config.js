@@ -31,8 +31,6 @@ module.exports = {
       config: {
         certificateFile: "./cert.pfx",
         certificatePassword: process.env.CERTIFICATE_PASSWORD,
-        iconUrl: "./public/Music_Tag_v01.ico",
-        setupIcon: "./public/Music_Tag_v01.ico",
       },
     },
     {

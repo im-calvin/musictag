@@ -100,6 +100,15 @@ module.exports = {
           from: "./node_modules/once/",
           to: "./node_modules/once/",
         },
+        // ffmpeg?
+        {
+          from: "./node_modules/ffprobe-static/",
+          to: "./node_modules/ffprobe-static/",
+        },
+        {
+          from: "./node_modules/ffmpeg-static/ffmpeg.exe",
+          to: "./ffmpeg.exe",
+        },
       ],
     }),
   ],

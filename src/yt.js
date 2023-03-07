@@ -3,8 +3,20 @@ const fetch = require("node-fetch").default;
 const { rm } = require("node:fs/promises");
 const { join, resolve } = require("node:path");
 // External modules
+// ffmpeg installer
 const ffmpeg = require("fluent-ffmpeg");
+//Get the paths to the packaged versions of the binaries we want to use
+const ffmpegPath = require("ffmpeg-static").replace("app.asar", "app.asar.unpacked");
+const ffprobePath = require("ffprobe-static").path.replace(
+  "app.asar",
+  "app.asar.unpacked"
+);
+//tell the ffmpeg package where it can find the needed binaries.
+ffmpeg.setFfmpegPath(ffmpegPath);
+ffmpeg.setFfprobePath(ffprobePath);
+
 const ffmetadata = require("ffmetadata");
+// for youtube download
 const ytdl = require("ytdl-core");
 const Url = require("url-parse");
 // for image processing

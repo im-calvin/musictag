@@ -1,7 +1,7 @@
 {
   "name": "musictag",
   "productName": "musictag",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "YouTube MP3 downloader with automatic metadata tagging",
   "main": ".webpack/main",
   "scripts": {
@@ -12,6 +12,11 @@
     "lint": "echo \"No linting configured\""
   },
   "build": {
+    "asarUnpack": [
+      "node_modules/ffmpeg-static/bin/${os}/${arch}/ffmpeg",
+      "node_modules/ffmpeg-static/index.js",
+      "node_modules/ffmpeg-static/package.json"
+    ],
     "publish": [
       {
         "provider": "github",
@@ -27,11 +32,14 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "dotenv": "^16.0.3",
     "electron-is-dev": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.1.0",
     "ffmetadata": "^1.7.0",
+    "ffmpeg-static": "^5.1.0",
+    "ffprobe-static": "^3.1.0",
     "fluent-ffmpeg": "^2.1.2",
     "holodex.js": "^2.0.5",
     "node-fetch": "^2.6.9",
