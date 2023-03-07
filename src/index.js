@@ -1,5 +1,4 @@
 const { app, BrowserWindow, dialog, ipcMain } = require("electron");
-const { join, resolve } = require("path");
 const getMP3 = require("./yt");
 const Store = require("electron-store");
 const isDev = require("electron-is-dev");
@@ -40,7 +39,7 @@ const createWindow = () => {
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   // Open the DevTools.
-  // isDev ? mainWindow.webContents.openDevTools() : 0;
+  isDev ? mainWindow.webContents.openDevTools() : 0;
 };
 
 // This method will be called when Electron has finished

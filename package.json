@@ -4,12 +4,17 @@
   "version": "1.1.1",
   "description": "YouTube MP3 downloader with automatic metadata tagging",
   "main": ".webpack/main",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/im-calvin/musictag.git"
+  },
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "packager": "electron-packager ./ --platform=win32"
   },
   "build": {
     "asarUnpack": [
@@ -27,7 +32,7 @@
   },
   "keywords": [],
   "author": {
-    "name": "im-calvin",
+    "name": "Calvin",
     "email": "kelvinwong0519@gmail.com"
   },
   "license": "MIT",
