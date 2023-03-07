@@ -31,6 +31,8 @@ module.exports = {
       config: {
         certificateFile: "./cert.pfx",
         certificatePassword: process.env.CERTIFICATE_PASSWORD,
+        setupExe: "MusicTagSetup.exe",
+        
       },
     },
     {

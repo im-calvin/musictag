@@ -100,4 +100,5 @@ song_out
 # workflows testing
 .github
 
-.src/directories.json
+# win certificate
+./cert.pfx

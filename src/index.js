@@ -3,6 +3,7 @@ const { join, resolve } = require("path");
 const getMP3 = require("./yt");
 const Store = require("electron-store");
 const isDev = require("electron-is-dev");
+require("update-electron-app")();
 
 // config schema for electron-store
 const schema = {

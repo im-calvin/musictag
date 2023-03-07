@@ -44,6 +44,7 @@
     "holodex.js": "^2.0.5",
     "node-fetch": "^2.6.9",
     "sharp": "^0.31.3",
+    "update-electron-app": "^2.0.1",
     "url-parse": "^1.5.10",
     "ytdl-core": "^4.11.2"
   },
